@@ -1,0 +1,14 @@
+[db]
+username = weather
+password = xxx
+server = localhost
+port = 8889
+database = weather
+
+[mqtt]
+broker = 10.2.69.8
+port = 1883
+
+[subscription]
+topic = wxstation/#
+
