@@ -74,7 +74,9 @@ class Mqtt2Db:
 
         # Subscribing in on_connect() means that if we lose the connection and
         # reconnect then subscriptions will be renewed.
-        client.subscribe(self.config['topic'])
+        topic = self.config['subscription']['topic']
+        print("Subscribing to %s" % topic)
+        client.subscribe(topic)
 
     # The callback for when a PUBLISH message is received from the server.
     def on_message(self, client, userdata, msg):
