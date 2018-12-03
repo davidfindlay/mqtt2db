@@ -1,0 +1,99 @@
+dbs:
+  - database_name: weather
+    username: myuser
+    password: mypass
+    port: 3306
+    host: localhost
+
+tables:
+  - table_name: raw_wind
+    db: weather
+    columns:
+      - column_name: wind_direction
+        type: integer
+      - column_name: wind_speed
+        type: float
+      - column_name: dt
+        type: datetime
+
+  - table_name: raw_rain
+    db: weather
+    columns:
+      - column_name: rain
+        type: float
+      - column_name: dt
+        type: datetime
+
+  - table_name: raw_temp_rh
+    db: weather
+    columns:
+      - column_name: temperature
+        type: float
+      - column_name: humidity
+        type: float
+      - column_name: dt
+        type: datetime
+
+  - table_name: raw_air_pressure
+    db: weather
+    columns:
+      - column_name: pressure
+        type: float
+      - column_name: dt
+        type: datetime
+
+  - table_name: awn_temp
+    db: weather
+    columns:
+      - column_name: temperature
+        type: float
+      - column_name: dt
+        type: datetime
+
+brokers:
+  - brokername: home
+    host: localhost
+    port: 1883
+
+subscriptions:
+  - topic: wxstation/wind_speed
+    db: weather
+    broker: home
+    table: raw_wind
+    column: wind_speed
+
+  - topic: wxstation/wind_direction
+    db: weather
+    broker: home
+    table: raw_wind
+    column: wind_direction
+
+  - topic: wxstation/rain
+    db: weather
+    broker: home
+    table: raw_rain
+    column: rain
+
+  - topic: wxstation/tempC
+    db: weather
+    broker: home
+    table: raw_temp_rh
+    column: temperature
+
+  - topic: wxstation/humidityPc
+    db: weather
+    broker: home
+    table: raw_temp_rh
+    column: humidity
+
+  - topic: wxstation/pressurePa
+    db: weather
+    broker: home
+    table: raw_air_pressure
+    column: pressure
+
+  - topic: awn/KippaRingE/pi/temperature
+    db: weather
+    broker: home
+    table: awn_temp
+    column: temperature
